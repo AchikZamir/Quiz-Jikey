@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Jikey — Kuiz Interaktif Warisan Malaysia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Batik-inspired pattern overlay -->
+  <svg class="batik-pattern" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="batik" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+        <circle cx="30" cy="30" r="8" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.15"/>
+        <circle cx="0" cy="0" r="6" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.1"/>
+        <circle cx="60" cy="60" r="6" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.1"/>
+        <path d="M15 45 Q30 30 45 15" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.08"/>
+        <path d="M0 30 L60 30 M30 0 L30 60" stroke="currentColor" stroke-width="0.3" opacity="0.06"/>
+      </pattern>
+      <pattern id="songket" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+        <rect width="24" height="24" fill="none"/>
+        <path d="M0 12h24M12 0v24" stroke="currentColor" stroke-width="0.4" opacity="0.12"/>
+        <rect x="10" y="10" width="4" height="4" fill="currentColor" opacity="0.08" transform="rotate(45 12 12)"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#batik)"/>
+  </svg>
+
+  <div class="gold-border-top" aria-hidden="true"></div>
+  <div class="gold-border-bottom" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-emblem" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.5"/>
+          <ellipse cx="20" cy="22" rx="12" ry="9" fill="currentColor" opacity="0.2"/>
+          <ellipse cx="20" cy="20" rx="10" ry="7" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="10" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="0.8"/>
+          <circle cx="20" cy="12" r="2" fill="currentColor"/>
+        </svg>
+      </span>
+      <div class="logo-text-wrap">
+        <span class="logo-text">Quiz <strong>Jikey</strong></span>
+        <span class="logo-jawi">جيقي</span>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <button class="nav-btn active" data-view="home">Utama</button>
+      <button class="nav-btn" data-view="topics">Topik</button>
+      <button class="nav-btn" data-view="profile">Profil</button>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="musicToggle" title="Matikan muzik" aria-label="Matikan muzik">
+        <span id="musicIcon">🔊</span>
+      </button>
+      <button class="icon-btn icon-btn-fx" id="sfxToggle" title="Matikan kesan bunyi" aria-label="Kesan bunyi">
+        <span id="sfxIcon" class="fx-label">FX</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <!-- HOME -->
+    <section id="view-home" class="view active">
+      <div class="hero">
+        <p class="hero-badge">Kesenian Tradisi · Kedah & Perlis</p>
+        <h1>Uji Ilmu Anda.<br><span class="gradient-text">Raih Skor Sempurna.</span></h1>
+        <p class="hero-sub">Seperti persembahan Jikey yang memukau penonton, kuiz ini mencabar minda anda merentasi 5 Bahagian & 75 soalan. Lulus semua untuk gred sempurna!</p>
+
+        <div class="heritage-strip">
+          <div class="heritage-icon">🥁</div>
+          <p><strong>Apa itu Jikey?</strong> Teater rakyat Melayu utara — gabungan lakonan, nyanyian, tarian & muzik rebana. Warisan budaya yang hidup sejak abad ke-19.</p>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-pill">
+            <span class="stat-num" id="heroTopicCount">0</span>
+            <span class="stat-label">Topik</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num" id="heroPassedCount">0</span>
+            <span class="stat-label">Lulus</span>
+          </div>
+          <div class="stat-pill highlight">
+            <span class="stat-num" id="heroPerfectBadge">—</span>
+            <span class="stat-label">Skor Sempurna</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-glow" id="startBtn">
+          Mula Bermain
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+
+      <div class="feature-cards">
+        <article class="feature-card">
+          <div class="feature-icon">📜</div>
+          <h3>4 Pilihan Jawapan</h3>
+          <p>Setiap soalan dengan empat pilihan — pantas, interaktif & menyeronokkan.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">🏅</div>
+          <h3>Markah Mengikut Topik</h3>
+          <p>Setiap topik ada ambang lulus & mata tersendiri untuk profil anda.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">👤</div>
+          <h3>Profil Pencapaian</h3>
+          <p>Pantau kemajuan & kejar lencana SEMPURNA di semua topik.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOPICS -->
+    <section id="view-topics" class="view">
+      <div class="section-header">
+        <span class="section-ornament">✦</span>
+        <h2>Pilih Topik Kuiz</h2>
+        <p>Lulus setiap topik untuk capai skor sempurna dalam profil.</p>
+      </div>
+      <div class="topics-grid" id="topicsGrid"></div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="view-profile" class="view">
+      <div class="profile-card">
+        <div class="profile-card-ornament" aria-hidden="true"></div>
+        <div class="profile-header">
+          <div class="avatar" id="profileAvatar">🎭</div>
+          <div>
+            <h2>Profil Anda</h2>
+            <p class="profile-sub" id="profileStatus">Mula bermain untuk bina skor anda!</p>
+          </div>
+          <div class="perfect-badge hidden" id="perfectBadge">
+            <span>★</span> SEMPURNA
+          </div>
+        </div>
+
+        <div class="score-ring-wrap">
+          <svg class="score-ring" viewBox="0 0 120 120">
+            <circle class="ring-bg" cx="60" cy="60" r="52"/>
+            <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52"/>
+          </svg>
+          <div class="score-ring-text">
+            <span class="score-percent" id="totalScorePercent">0%</span>
+            <span class="score-label">Jumlah Markah</span>
+            <span class="score-points-detail" id="totalPointsDetail">0 / 500 mata</span>
+          </div>
+        </div>
+
+        <p class="profile-storage-note">💾 Kemajuan disimpan pada peranti & pelayar ini sahaja. Guna <strong>Eksport</strong> / <strong>Import</strong> untuk pindah ke peranti lain.</p>
+
+        <div class="profile-breakdown" id="profileBreakdown"></div>
+
+        <div class="profile-actions">
+          <button class="btn btn-secondary" id="exportProgress">Eksport Kemajuan</button>
+          <button class="btn btn-secondary" id="importProgress">Import Kemajuan</button>
+          <button class="btn btn-secondary btn-danger" id="resetProgress">Set Semula</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- QUIZ MODAL -->
+  <div class="quiz-overlay hidden" id="quizOverlay" role="dialog" aria-modal="true" aria-labelledby="quizTopicTitle">
+    <div class="quiz-modal">
+      <div class="quiz-modal-ornament" aria-hidden="true"></div>
+      <div class="quiz-top">
+        <div class="quiz-topic-info">
+          <span class="quiz-topic-icon" id="quizTopicIcon">📚</span>
+          <div>
+            <h3 id="quizTopicTitle">Topik</h3>
+            <p id="quizProgress">Soalan 1 daripada 5</p>
+          </div>
+        </div>
+        <button class="close-btn" id="closeQuiz" aria-label="Tutup kuiz">✕</button>
+      </div>
+
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="quizProgressFill"></div>
+      </div>
+
+      <div class="quiz-score-live">
+        <span>Markah: <strong id="liveScore">0</strong></span>
+        <span>Lulus pada: <strong id="passThreshold">70%</strong></span>
+      </div>
+
+      <div class="question-card" id="questionCard">
+        <p class="question-number" id="questionNumber">S1</p>
+        <h4 class="question-text" id="questionText">Memuatkan soalan...</h4>
+        <div class="answers-grid" id="answersGrid"></div>
+      </div>
+
+      <div class="quiz-feedback hidden" id="quizFeedback">
+        <div class="feedback-icon" id="feedbackIcon">✓</div>
+        <p id="feedbackText">Tepat!</p>
+        <button class="btn btn-primary" id="nextQuestionBtn">Soalan Seterusnya</button>
+      </div>
+
+      <div class="quiz-results hidden" id="quizResults">
+        <div class="results-trophy" id="resultsTrophy">🏆</div>
+        <h3 id="resultsTitle">Topik Selesai!</h3>
+        <p class="results-score" id="resultsScoreText">Anda dapat 80%</p>
+        <p class="results-message" id="resultsMessage"></p>
+        <div class="results-actions">
+          <button class="btn btn-secondary" id="retryTopic">Cuba Lagi</button>
+          <button class="btn btn-primary" id="backToTopics">Kembali ke Topik</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="confetti-container" id="confettiContainer" aria-hidden="true"></div>
+
+  <footer class="site-footer">
+    <p>Quiz Jikey &copy; 2026</p>
+  </footer>
+
+  <script src="js/questions.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
